@@ -1,0 +1,12 @@
+---
+- name: Clone the Windows VM
+  command: >
+    virt-clone
+    --original {{ original_vm }}
+    --name {{ vm_name }}
+    --file /var/lib/libvirt/images/{{ vm_name }}.qcow2
+
+- name: Inject unattend.xml file
+  command: >
+    virt-sysprep -a /var/lib/libvirt/images/{{ vm_name }}.qcow2
+    --inject {{ unattend_file }}:/windows/system32/sysprep/unattend.xml
