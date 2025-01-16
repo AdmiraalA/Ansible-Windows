@@ -1,0 +1,16 @@
+---
+- name: Clone and configure Windows VM
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Clone the VM
+      import_role:
+        name: clone_vm
+
+    - name: Configure and activate Windows
+      import_role:
+        name: activate_windows
+
+    - name: Install and configure Active Directory
+      import_role:
+        name: directory_services
