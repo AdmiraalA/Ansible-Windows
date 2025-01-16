@@ -1,0 +1,7 @@
+---
+- name: Execute the cloning and configuration playbook
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Run the clone and configure playbook
+      include_tasks: playbooks/clone-and-configure.yml
