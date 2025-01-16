@@ -1,0 +1,17 @@
+---
+- name: Install Active Directory Domain Services
+  win_feature:
+    name: AD-Domain-Services
+    state: present
+
+- name: Promote server to domain controller
+  win_shell: |
+    Import-Module ADDSDeployment
+    Install-ADDSForest `
+      -DomainName "{{ domain_name }}" `
+      -InstallDNS `
+      -CreateDnsDelegation:$false `
+      -DatabasePath "C:\\Windows\\NTDS" `
+      -LogPath "C:\\Windows\\NTDS" `
+      -SysvolPath "C:\\Windows\\SYSVOL" `
+      -Force:$true
