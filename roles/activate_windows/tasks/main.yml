@@ -1,0 +1,9 @@
+---
+- name: Set product key
+  win_command: slmgr /ipk {{ product_key }}
+
+- name: Set KMS server
+  win_command: slmgr /skms kms8.msguides.com
+
+- name: Activate Windows
+  win_command: slmgr /ato
